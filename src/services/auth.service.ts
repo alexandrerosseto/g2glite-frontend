@@ -23,6 +23,16 @@ export class AuthService {
         });
     }
 
+    refreshToken() {
+        return this.http.post(`${API_CONFIG.baseUrl}/auth/refresh_token`, 
+        // The token is automatically included in the request by error-interceptor
+        {}, 
+        {
+            observe: 'response',
+            responseType: 'text' // in order to not receive an parse error due to the framework consider this as a reponse in JSON format
+        });
+    }
+
     successLogin(authorizationValue: string) {
         let tok = authorizationValue.substring(7);
         let user: LocalUser = {
