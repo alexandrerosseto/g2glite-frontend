@@ -1,0 +1,90 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="signupUser(); $event.preventDefault()">
+    <ion-item>
+      <ion-label stacked>Name*</ion-label>
+      <ion-input name="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email*</ion-label>
+      <ion-input name="email" type="text"></ion-input>
+    </ion-item>
+    <ion-list radio-group name="type">
+      <ion-list-header>
+        Client Type
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Personal</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Business</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label stacked>ID Number (CPF / CNPJ)</ion-label>
+      <ion-input name="idNumber" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password*</ion-label>
+      <ion-input name="password" type="password"></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label stacked>Street*</ion-label>
+      <ion-input name="street" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Number*</ion-label>
+      <ion-input name="number" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Observation</ion-label>
+      <ion-input name="Observation" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Address</ion-label>
+      <ion-input name="Address" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Postal*</ion-label>
+      <ion-input name="postal" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telephone 1*</ion-label>
+      <ion-input name="telephone1" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telephone 2</ion-label>
+      <ion-input name="telephone2" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Telephone 3</ion-label>
+      <ion-input name="telephone3" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>State*</ion-label>
+      <ion-select name="stateId" (ionChange)="updateCities()">
+        <ion-option value="1">Minas Gerais</ion-option>
+        <ion-option value="2">São Paulo</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>City*</ion-label>
+      <ion-select name="cityId">
+        <ion-option value="1">Uberlândia</ion-option>
+        <ion-option value="2">Campinas</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button block type="submit">Create account</button>
+  </form>
+</ion-content>
