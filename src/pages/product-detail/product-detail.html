@@ -9,6 +9,9 @@
 
 
 <ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
   <ion-card>
     <img [src]="item?.imageUrl || 'assets/imgs/prod.jpg'">
     <ion-card-content>
@@ -20,5 +23,5 @@
       </p>
     </ion-card-content>
   </ion-card>
-  <button ion-button block outline>Add to cart</button>
+  <button ion-button block outline (click)="addToCart(item)">Add to cart</button>
 </ion-content>
