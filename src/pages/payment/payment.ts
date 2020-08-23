@@ -34,7 +34,7 @@ export class PaymentPage {
     if (this.order.payment["@type"] == 'InvoicePayment') {
       this.order.payment.installments = '0';
     }
-    console.log(this.order);
+    this.navCtrl.setRoot('OrderConfirmationPage', {order: this.order});
   }
 
 }
