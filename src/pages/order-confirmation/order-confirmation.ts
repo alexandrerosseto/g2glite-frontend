@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { OrderDTO } from '../../models/order.dto';
 import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/domain/cart.service';
@@ -25,7 +25,8 @@ export class OrderConfirmationPage {
     public navParams: NavParams,
     public cartService: CartService,
     public clientService: ClientService,
-    public orderService: OrderService) {
+    public orderService: OrderService,
+    public alertCtrl: AlertController) {
 
     this.order = this.navParams.get('order');
   }
@@ -56,6 +57,17 @@ export class OrderConfirmationPage {
     .subscribe(response => {
       this.cartService.createOrClearCart();
       console.log(response.headers.get('location')); //backend commit: 358ceb4750b47aa65de389658ed3cc3cb40071c7 / "Authorization and authentication working correctly"
+
+      let alert = this.alertCtrl.create({
+        title: 'Order Confirmation',
+        message: 'Your order was successfully received!',
+        enableBackdropDismiss: false,
+        buttons: [
+            { text: 'Ok' }
+        ]
+    });
+    alert.present();
+
       this.navCtrl.setRoot('HomePage');
     },
     error => {
