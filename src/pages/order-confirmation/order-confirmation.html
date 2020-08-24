@@ -3,13 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Order confirmation</ion-title>
+    <ion-title *ngIf="orderId">Order confirmed</ion-title>
+    <ion-title *ngIf="!orderId">Order confirmation</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-
+  <div *ngIf="!orderId">
     <ion-card>
       <ion-card-header>
         Order items
@@ -71,4 +72,19 @@
     </ion-card>
     <button ion-button block (click)="checkout()">Confirm</button>
     <button ion-button block outline (click)="back()">Review</button>
+  </div>
+
+  <div *ngIf="orderId">
+    <ion-card>
+        <ion-card-header>
+          Your order was successfully received!
+        </ion-card-header>
+        <ion-item>
+          <h2>Order number: {{orderId}}</h2>
+          <p>Check your e-mail</p>
+        </ion-item>
+    </ion-card>
+
+    <button ion-button block outline (click)="home()">Back</button>
+  </div>
 </ion-content>

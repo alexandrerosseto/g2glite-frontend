@@ -19,6 +19,7 @@ export class OrderConfirmationPage {
   cartItems: CartItem[];
   client: ClientDTO;
   address: AddressDTO;
+  orderId: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -56,9 +57,9 @@ export class OrderConfirmationPage {
     this.orderService.insert(this.order)
     .subscribe(response => {
       this.cartService.createOrClearCart();
-      console.log(response.headers.get('location')); //backend commit: 358ceb4750b47aa65de389658ed3cc3cb40071c7 / "Authorization and authentication working correctly"
+      this.orderId = this.extractID(response.headers.get('location')); //backend commit: 358ceb4750b47aa65de389658ed3cc3cb40071c7 / "Authorization and authentication working correctly"
 
-      let alert = this.alertCtrl.create({
+/*       let alert = this.alertCtrl.create({
         title: 'Order Confirmation',
         message: 'Your order was successfully received!',
         enableBackdropDismiss: false,
@@ -66,9 +67,9 @@ export class OrderConfirmationPage {
             { text: 'Ok' }
         ]
     });
-    alert.present();
+    alert.present(); 
 
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('HomePage');*/
     },
     error => {
       if (error.status == 403) {
@@ -79,5 +80,14 @@ export class OrderConfirmationPage {
 
   back() {
     this.navCtrl.setRoot('CartPage');
+  }
+
+  home() {
+    this.navCtrl.setRoot('CategoriesPage');
+  }
+
+  private extractID(location: string) : string {
+    let position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 }
