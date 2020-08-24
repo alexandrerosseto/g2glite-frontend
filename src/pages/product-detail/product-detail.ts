@@ -4,6 +4,7 @@ import { ProductDTO } from '../../models/product.dto';
 import { ProductService } from '../../services/domain/product.service';
 import { API_CONFIG } from '../../config/api.config';
 import { CartService } from '../../services/domain/cart.service';
+import { LoarderService } from '../../services/loader.service';
 
 @IonicPage()
 @Component({
@@ -18,15 +19,18 @@ export class ProductDetailPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public productService: ProductService,
-    public cartService: CartService) {
+    public cartService: CartService,
+    public loaderService: LoarderService) {
   }
 
   ionViewDidLoad() {
+    let loader = this.loaderService.presentLoading();
     let product_id = this.navParams.get('productId');
     this.productService.findById(product_id)
     .subscribe(response => {
       this.item = response;
       this.getImageUrlIfExists();
+      loader.dismiss();
     },
     error => {});
   }

@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { ClientDTO } from '../../models/client.dto';
 import { ClientService } from '../../services/domain/client.service';
 import { API_CONFIG } from '../../config/api.config';
+import { LoarderService } from '../../services/loader.service';
 
 @IonicPage()
 @Component({
@@ -18,16 +19,19 @@ export class ProfilePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public clientService: ClientService) {
+    public clientService: ClientService,
+    public loaderService: LoarderService) {
   }
 
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
+      let loader = this.loaderService.presentLoading();
       this.clientService.findByEmail(localUser.email)
         .subscribe(response => {
           this.client = response as ClientDTO;
           this.getImageIfExists();
+          loader.dismiss();
         },
         error => {
           if (error.status == 403) {

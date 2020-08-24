@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductDTO } from '../../models/product.dto';
 import { ProductService } from '../../services/domain/product.service';
 import { API_CONFIG } from '../../config/api.config';
+import { LoarderService } from '../../services/loader.service';
 
 @IonicPage()
 @Component({
@@ -16,14 +17,17 @@ export class ProductsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public productService: ProductService) {
+    public productService: ProductService,
+    public loaderService: LoarderService) {
   }
 
   ionViewDidLoad() {
     let category_id = this.navParams.get('categoryId');
+    let loader = this.loaderService.presentLoading();
     this.productService.findByCategory(category_id)
     .subscribe(response => {
       this.items = response['content'];
+      loader.dismiss();
       this.loadImageUrls();
     },
     error => {});
