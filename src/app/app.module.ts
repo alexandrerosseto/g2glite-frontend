@@ -16,6 +16,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ProductService } from '../services/domain/product.service';
 import { CartService } from '../services/domain/cart.service';
 import { LoarderService } from '../services/loader.service';
+import { ImageUtilService } from '../services/image-util.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LoarderService } from '../services/loader.service';
     ClientService,
     ProductService,
     CartService,
-    LoarderService
+    LoarderService,
+    ImageUtilService
   ]
 })
 export class AppModule {}
