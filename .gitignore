@@ -9,6 +9,8 @@
 *.sublime-project
 *.sublime-workspace
 .DS_Store
+.vs/
+.vscode/
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
@@ -23,6 +25,7 @@ npm-debug.log*
 /.sourcemaps
 /.versions
 /.vscode
+/.vs
 /coverage
 /dist
 /node_modules
