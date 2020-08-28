@@ -73,7 +73,21 @@ npm install --save @ionic-native/camera
 
 ## Development setup
 
-Soon...
+After you clone this repository, you need to make the changes they as follow below.
+
+* Change the baseUrl in api.config.ts to your own.
+* Change at least the tag 'widget id' from config.xml file
+* Execute the commands:
+```
+npm install
+```
+```
+ionic cordova platform add browser --save
+```
+```
+ionic cordova platform add android --save
+```
+_Soon it will be more about the dev environment._
 
 ## Release History
 
