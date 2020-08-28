@@ -87,7 +87,7 @@ ionic cordova platform add browser --save
 ```
 ionic cordova platform add android --save
 ```
-_Soon it will be more about the dev environment._
+_Soon there will be more about the dev environment.._
 
 ## Release History
 
