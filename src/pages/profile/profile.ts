@@ -5,7 +5,7 @@ import { ClientDTO } from '../../models/client.dto';
 import { ClientService } from '../../services/domain/client.service';
 import { API_CONFIG } from '../../config/api.config';
 import { LoarderService } from '../../services/loader.service';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
@@ -120,6 +120,7 @@ export class ProfilePage {
   }
 
   sendPicture() {
+    console.log(this.picture);
     this.clientService.uploadPicture(this.picture)
     .subscribe(response => {
       this.picture = null;
